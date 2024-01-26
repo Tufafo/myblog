@@ -1,7 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"//lisp/lisp/","tags":["gardenEntry"]}
+{"dg-publish":true,"permalink":"//lisp/lisp/"}
 ---
-
 
 
 ```mermaid

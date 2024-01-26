@@ -5,6 +5,4 @@
 
 [[program language/lisp/lisp basic-refference and function\|lisp basic-refference and function]]
 
-
-[[abc\|abc]]
-
+[[program language/lisp/lisp basic-list\|lisp basic-list]]

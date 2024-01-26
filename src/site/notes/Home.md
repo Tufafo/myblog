@@ -2,10 +2,9 @@
 {"dg-publish":true,"permalink":"/home/","tags":["gardenEntry"]}
 ---
 
-- lisp 基础
-[[lisp basic-refference and function1\|lisp basic-refference and function1]]
 
-123123
+[[program language/lisp/lisp basic-refference and function\|lisp basic-refference and function]]
+
 
 [[abc\|abc]]
 

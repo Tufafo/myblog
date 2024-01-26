@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"//lisp/lisp/"}
+{"dg-publish":true,"permalink":"//lisp/lisp/","tags":["gardenEntry"]}
 ---
 
 

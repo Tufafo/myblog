@@ -5,3 +5,5 @@
 
 This is a digital garden for my program.
 
+Here is a digital garden for my program log.
+

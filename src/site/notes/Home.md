@@ -5,5 +5,6 @@
 
 This is a digital garden for my program.
 
-Here is a digital garden for my program log.
+What have I recorded now:
 
+- [[DG/Physical/Install calibre-server on debian 12 x 64\|Install calibre-server on debian 12 x 64]]

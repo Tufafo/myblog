@@ -77,6 +77,12 @@ localhost RET
 TAB RET
 ```
 
+Have a test in the repl
+
+```clojure
+myapp.core> (+ 3 5)
+8
+```
 ## Refference
 
 - [Clojure, Install Clojure](https://clojure.org/guides/install_clojure)

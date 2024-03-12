@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"//emacs/","tags":["环境配置"]}
+{"dg-publish":true,"permalink":"/主题/环境配置，emacs/","tags":["环境配置"]}
 ---
 
 

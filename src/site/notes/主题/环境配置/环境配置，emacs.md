@@ -7,14 +7,14 @@
 
 ```mermaid
 mindmap
-	root((Emacs))
-		Dashboard
-		valign
-		vertico
-		pyim
-		dracula
-		treemacs
-		else
+root((Emacs))
+	Dashboard
+	valign
+	vertico
+	pyim
+	dracula
+	treemacs
+	else
 ```
 
 ## emacs简介

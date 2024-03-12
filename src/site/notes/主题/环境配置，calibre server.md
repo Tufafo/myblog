@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"//calibre-server/","tags":["环境配置"]}
+{"dg-publish":true,"permalink":"/主题/环境配置，calibre server/","tags":["环境配置"]}
 ---
 
 

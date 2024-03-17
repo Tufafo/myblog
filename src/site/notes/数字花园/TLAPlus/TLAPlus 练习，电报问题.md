@@ -1,8 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/数字花园/TLAPlus/TLAPlus 练习，电报问题/"}
+{"dg-publish":true,"permalink":"/数字花园/TLAPlus/TLAPlus 练习，电报问题/","tags":["练习","TLAplus"]}
 ---
 
 
+
+## 电报问题描述
 
 现在请你设计一个电报交换系统，包括以下几个条件：
 
@@ -13,7 +15,9 @@
 - 多个电报可能同时发生。
 
 
-**单进程建模**
+## 单进程建模
+
+### 单进程代码
 
 ```PlusCal
 EXTENDS Integers
@@ -39,6 +43,8 @@ end algorithm;**)
 ```
 
 
+### 报错情况设置
+
 其中，如果修改 amount 的值为 范围 1..6，则会报错。
 
 ![Pasted image 20240317110004.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317110004.png)
@@ -60,7 +66,9 @@ end algorithm;**)
 > [!faq] Diameter，States Found，Distinct State，Queue Size分别是什么？有什么方法可以在无错状态下查看执行路径？
 
 
-**多进程处理**
+## 多进程处理
+
+### 多进程代码
 
 ```PlusCal
 EXTENDS Integers
@@ -93,6 +101,8 @@ end process;
 end algorithm;**)
 
 ```
+
+### Error Trace
 
 执行上述代码，我们来看看 Error Trace 是什么样的吧。
 
@@ -131,6 +141,8 @@ end algorithm;**)
 而这五个步骤中整体发生了什么呢？
 
 小张想给小王寄钱，在小王还没有收到钱时，小张第一次寄一美元，第二次寄五美元，账户变成负值。
+
+### 把 Check 和 Withdraw 放在一起
 
 那我们要怎样规避这些错误呢？
 
@@ -175,6 +187,8 @@ end algorithm;**)
 
 现在没有问题了。
 
+## Temporal Properties 时间属性
+
 之后要做什么？
 
 整体金额不变的部分称为 `Temporal Properties` ，世俗的属性，时间的属性。而每次金额不变的属性称为 `invariants` ，也就是不变量。两者最大的区别目前看来是是否需要跨越不同的系统状态进行检查。 `invariants` 只需要在状态内检查属性就可以了。不过 `Temporal Properties` 则需要综合不同的系统状态考虑约束条件。
@@ -195,11 +209,74 @@ end algorithm;**)
 	- 检查错误报告是：
 	- ![Pasted image 20240317122501.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317122501.png)
 
-来看看DuckDuckgo上有什么消息吧。
+来看看DuckDuckgo上有什么答案吧。
 
+经过检查，我发现了自己的错误。
 
+首先来解释 `<>[]P` 这个表达的含义吧。
+
+根据[TLC手册](https://www.learntla.com/core/temporal-logic.html)的表达，
+
+| 语法      | 含义                        |
+| :------ | ------------------------- |
+| `[]P`   | P总为真                      |
+| `<>P`   | P最终为真                     |
+| `[]~P`  | P总为假                      |
+| `~[]P`  | P不总为真，有假的情况               |
+| `<>[]P` | 最终P总为真（中间状态可以为假，但首尾状态应为真） |
+| `[]<>P` | P总最终为真                    |
+
+看起来真是相当复杂的表述。
+
+在上述错误报告中，注意看属性设置。
+
+![Pasted image 20240317133113.png](/img/user/Pasted%20image%2020240317133113.png)
+
+正如这个图像所展示的，TLC有三个可以检查的量：==Deadlock==，==Invariants==，==Properties==。
+
+之前我把 ==`EventuallyConsistent`== 这个属性放在 `Invariants` 中，导致模型检查错误。
+
+更正属性检查后继续执行代码，依然会报错。
+
+- ErrorTrace
+	- 状态1：
+		- ![Pasted image 20240317133946.png](/img/user/Pasted%20image%2020240317133946.png)
+	- 状态2：
+		- ![Pasted image 20240317134008.png](/img/user/Pasted%20image%2020240317134008.png)
+	- 状态3：
+		- ![Pasted image 20240317134020.png](/img/user/Pasted%20image%2020240317134020.png)
+	- 状态4：
+		- ![Pasted image 20240317134031.png](/img/user/Pasted%20image%2020240317134031.png)
+
+那么这种可能性中发生了什么呢？
+
+```mermaid
+graph TD
+P1("小张五元, 小王五元")--小张发送一元-->P2("小张四元，小王五元")
+P2--小张又发送一元-->P3("小张三元, 小王五元")
+P3--小王收到第一元-->P4("小张三元，小王六元")
+```
+
+恩......为什么小王没有收到最后一元呢？
+
+系统进行到第五步的时候出错了。
+
+![Pasted image 20240317135331.png](/img/user/Pasted%20image%2020240317135331.png)
+
+==`<Stuttering>`==  这是什么意思？
+
+> Stuttering is when a process simply stops. There’s nothing preventing the wire from making the deposit, it just doesn’t try.
+
+当一个进程停止时，没有阻止电报造成 deposit ? 
+
+大概意思可能是，在状态4，进程2停止时，按照 `EventuallyConsistent` 的声明，系统总金额应该“最终”等于10。不过由于另一个进程的1元还没有送到，所以系统状态违反了时间属性的约束，就报错了。
+
+那有什么处理方法吗？
+
+作者说，可以放松 `NoOverdrafts`或 `EventuallyConsistent`  条件，尝试不同的执行，告诉TLCplus在 `withdraw` 和 `deposit` 之间不能 `stutter`，或者干脆把 `check`，`withdraw` 和 `deposit` 三个步骤组成一个原子。
 
 
 
 ## 参考书籍
 
+- Pratical TLA+, by Hilllel Wayne

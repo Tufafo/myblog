@@ -230,7 +230,7 @@ end algorithm;**)
 
 在上述错误报告中，注意看属性设置。
 
-![Pasted image 20240317133113.png](/img/user/Pasted%20image%2020240317133113.png)
+![Pasted image 20240317133113.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317133113.png)
 
 正如这个图像所展示的，TLC有三个可以检查的量：==Deadlock==，==Invariants==，==Properties==。
 
@@ -240,13 +240,13 @@ end algorithm;**)
 
 - ErrorTrace
 	- 状态1：
-		- ![Pasted image 20240317133946.png](/img/user/Pasted%20image%2020240317133946.png)
+		- ![Pasted image 20240317133946.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317133946.png)
 	- 状态2：
-		- ![Pasted image 20240317134008.png](/img/user/Pasted%20image%2020240317134008.png)
+		- ![Pasted image 20240317134008.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134008.png)
 	- 状态3：
-		- ![Pasted image 20240317134020.png](/img/user/Pasted%20image%2020240317134020.png)
+		- ![Pasted image 20240317134020.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134020.png)
 	- 状态4：
-		- ![Pasted image 20240317134031.png](/img/user/Pasted%20image%2020240317134031.png)
+		- ![Pasted image 20240317134031.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134031.png)
 
 那么这种可能性中发生了什么呢？
 
@@ -261,7 +261,7 @@ P3--小王收到第一元-->P4("小张三元，小王六元")
 
 系统进行到第五步的时候出错了。
 
-![Pasted image 20240317135331.png](/img/user/Pasted%20image%2020240317135331.png)
+![Pasted image 20240317135331.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317135331.png)
 
 ==`<Stuttering>`==  这是什么意思？
 

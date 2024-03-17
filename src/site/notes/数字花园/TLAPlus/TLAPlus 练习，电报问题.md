@@ -240,13 +240,13 @@ end algorithm;**)
 
 - ErrorTrace
 	- 状态1：
-	- ![Pasted image 20240317133946.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317133946.png)
+		- ![Pasted image 20240317133946.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317133946.png)
 	- 状态2：
-	- ![Pasted image 20240317134008.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134008.png)
+		- ![Pasted image 20240317134008.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134008.png)
 	- 状态3：
-	- ![Pasted image 20240317134020.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134020.png)
+		- ![Pasted image 20240317134020.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134020.png)
 	- 状态4：
-	- ![Pasted image 20240317134031.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134031.png)
+		- ![Pasted image 20240317134031.png](/img/user/%E5%9B%BE%E7%89%87/Pasted%20image%2020240317134031.png)
 
 那么这种可能性中发生了什么呢？
 
@@ -274,8 +274,6 @@ P3--小王收到第一元-->P4("小张三元，小王六元")
 那有什么处理方法吗？
 
 作者说，可以放松 `NoOverdrafts`或 `EventuallyConsistent`  条件，尝试不同的执行，告诉TLCplus在 `withdraw` 和 `deposit` 之间不能 `stutter`，或者干脆把 `check`，`withdraw` 和 `deposit` 三个步骤组成一个原子。
-
-
 
 ## 参考书籍
 

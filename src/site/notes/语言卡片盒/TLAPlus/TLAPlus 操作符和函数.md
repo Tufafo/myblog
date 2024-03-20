@@ -117,13 +117,13 @@ end define;
 
 ### Q2：TLA+的逻辑操作符
 
-#### `\A` 全部
+ - `\A` 全部
 
-#### `\E` 存在
+-  `\E` 存在
 
-#### `=>` 蕴含
+-  `=>` 蕴含
 
-#### `<=>` 与或
+-  `<=>` 与或
 
 
 
@@ -144,7 +144,7 @@ RotateRight(seq) ==
 
 #### IF THEN ELSE
 
-IF Condition THEN Exp1 ELSE Exp2.
+`IF Condition THEN Exp1 ELSE Exp2`
 
 
 #### CHOOSE
@@ -165,4 +165,55 @@ CHOOSE x \in S : P(x) is “select an x such that P(x) is true.”
 
 ### DOMAIN
 
-DOMAIN
+DOMAIN，给予一个函数可能的输入
+
+> If `func == [x \in set |-> ...]` , then `DOMAIN func = set`.
+
+测试一下吧。
+
+~~在tla+中函数输入一般用 `[]` 方括号括起来。那么圆括号 `()` 表示什么呢？~~
+
+在规范中定义函数 foo。
+
+```tla+
+\* in define
+foo(S) == [x \in S |-> x + 1]
+```
+
+然后在检查中测试：
+
+`foo(1..3)` => `<<2, 3, 4>>`
+
+如果在foo前加上 `DOMAIN` 呢？
+
+`DOMAIN {1, 2, 3}` => `{1, 2, 3}`
+
+另外有一个问题：
+
+> [!faq] 为什么写成 `foo[1..3]` 的形式会成为非法的？
+
+我想是因为我的定义是：`foo(S) == [x \in S |-> x + 1]`
+
+如果修改为：`foo[x \in 1..3] == "ok"`
+
+进行测试：`foo[1]` => `"ok"`，`DOMAIN foo` => `{1, 2, 3}`
+
+是可以通过的。
+
+> 那么可以把 `foo[x \in 1..3]` 替换成 `foo(x \in 1..3)` 吗？
+
+不能，定义`foo(x \in 1..3) == "ok"` 会出错：
+![Pasted image 20240320091503.png](/img/user/Pasted%20image%2020240320091503.png)
+
+很显然圆括号的定义不是函数定义，那么圆括号定义了什么呢？——**操作符**
+
+> [!faq] 那么函数可以缺少域的定义吗？
+
+不能，定义 `foo[x] == "ok"` 会出错：
+
+![Pasted image 20240320091919.png](/img/user/Pasted%20image%2020240320091919.png)
+
+
+
+### @@
+
